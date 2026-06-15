@@ -26,8 +26,8 @@ Complete production deployment guide for **MeshClean Debugger Environment**.
 
 ```bash
 # Clone or download the repository
-git clone https://github.com/YOUR_USERNAME/meshclean-debugger.git
-cd meshclean-debugger
+git clone https://github.com/madhu2007-offical/MeshClean.git
+cd MeshClean
 
 # Create virtual environment
 python -m venv venv
@@ -72,7 +72,7 @@ Press Ctrl+C to stop the server
 
 ```bash
 # Navigate to project directory
-cd meshclean-debugger
+cd MeshClean
 
 # Build image
 docker build -t meshclean-debugger:latest .
@@ -139,7 +139,7 @@ docker-compose down
 
 ```bash
 # Navigate to project
-cd meshclean-debugger
+cd MeshClean
 
 # Initialize git
 git init
@@ -169,7 +169,7 @@ git commit -m "Initial commit: MeshClean Debugger"
 # Create repo on GitHub first at https://github.com/new
 
 # Add remote origin
-git remote add origin https://github.com/YOUR_USERNAME/meshclean-debugger.git
+git remote add origin https://github.com/madhu2007-offical/MeshClean.git
 
 # Set main branch
 git branch -M main
@@ -251,8 +251,8 @@ Before commit, ensure:
 
 ```bash
 # Clone the Space
-git clone https://huggingface.co/spaces/YOUR_HF_USERNAME/meshclean-debugger
-cd meshclean-debugger
+git clone https://huggingface.co/spaces/Madhu007official/MeshClean-Debugger
+cd MeshClean-Debugger
 
 # Copy your files here, then push
 # Or set up automatic sync:
@@ -291,7 +291,7 @@ git push
 #### 5. Access Your Space
 
 After deployment (~5 min):
-- URL: `https://huggingface.co/spaces/YOUR_HF_USERNAME/meshclean-debugger`
+- URL: `https://huggingface.co/spaces/Madhu007official/MeshClean-Debugger`
 - Direct app link: Click "App" button on Space page
 
 ---

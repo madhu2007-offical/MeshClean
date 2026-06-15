@@ -11,9 +11,9 @@ cd meshclean-hf
 ### Step 2: Copy project files
 ```bash
 # Copy all files from your local project to the HF Spaces repo
-cp -r ../MeshCleanDebuggerEnv/* .
+cp -r ../MeshClean/* .
 # Or on Windows PowerShell:
-# Copy-Item -Recurse -Path ..\MeshCleanDebuggerEnv\* -Destination .
+# Copy-Item -Recurse -Path ..\MeshClean\* -Destination .
 ```
 
 ### Step 3: Push to HF Spaces

@@ -155,7 +155,7 @@ case $choice in
         echo "Next steps:"
         echo "1. Create repository on GitHub: https://github.com/new"
         echo "2. Run these commands:"
-        echo "   git remote add origin https://github.com/YOUR_USERNAME/meshclean-debugger.git"
+        echo "   git remote add origin https://github.com/madhu2007-offical/MeshClean.git"
         echo "   git branch -M main"
         echo "   git push -u origin main"
         ;;

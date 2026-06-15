@@ -4,8 +4,8 @@
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/YOUR_USERNAME/meshclean-debugger.git
-cd meshclean-debugger
+git clone https://github.com/madhu2007-offical/MeshClean.git
+cd MeshClean
 
 # 2. Install dependencies
 pip install -r requirements.txt
@@ -37,7 +37,7 @@ git add .
 git commit -m "Initial commit"
 
 # 2. Add remote (create repo on GitHub first)
-git remote add origin https://github.com/YOUR_USERNAME/meshclean-debugger.git
+git remote add origin https://github.com/madhu2007-offical/MeshClean.git
 git branch -M main
 git push -u origin main
 ```
@@ -49,7 +49,7 @@ git push -u origin main
 3. Select "Docker" SDK
 4. Connect your GitHub repo (or upload files)
 5. Space deploys automatically
-6. Access at: `https://huggingface.co/spaces/YOUR_USERNAME/meshclean-debugger`
+6. Access at: `https://huggingface.co/spaces/Madhu007official/MeshClean-Debugger`
 
 ---
 

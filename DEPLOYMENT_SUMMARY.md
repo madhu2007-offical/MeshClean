@@ -110,7 +110,7 @@ docker run -p 7860:7860 meshclean:test
 git init
 git add .
 git commit -m "Initial commit: MeshClean Debugger"
-git remote add origin https://github.com/YOUR_USERNAME/meshclean-debugger.git
+git remote add origin https://github.com/madhu2007-offical/MeshClean.git
 git push -u origin main
 ```
 
@@ -142,7 +142,7 @@ GitHub Actions runs tests
         ↓
 HF Spaces auto-rebuilds
         ↓
-Live at https://huggingface.co/spaces/YOUR_USERNAME/meshclean-debugger
+Live at https://huggingface.co/spaces/Madhu007official/MeshClean-Debugger
 ```
 
 ---
