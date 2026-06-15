@@ -34,7 +34,7 @@ RUN pip install --upgrade pip setuptools && \
 # Copy application code
 COPY pipeline_debug_env/ ./pipeline_debug_env/
 COPY start_ui.py .
-COPY ui_minimal.py .
+COPY ui.py .
 COPY inference.py .
 
 # Expose port for UI

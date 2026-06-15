@@ -12,13 +12,19 @@ def main():
     print("\n" + "="*60)
     print("[*] MeshClean Pipeline Debugging Environment")
     print("="*60)
-    print("\nStarting Flask UI...")
+    print("\nStarting Gradio UI...")
     print("Listening on: http://localhost:7860")
     print("\nPress Ctrl+C to stop the server\n")
     
     try:
-        from ui_minimal import app
-        app.run(host='0.0.0.0', port=7860, debug=False, use_reloader=False)
+        from ui import build_interface
+        app = build_interface()
+        app.launch(
+            server_name="0.0.0.0",
+            server_port=7860,
+            show_error=True,
+            share=False
+        )
     except KeyboardInterrupt:
         print("\n\nServer stopped.")
         sys.exit(0)

@@ -17,7 +17,8 @@ PyYAML>=6.0,<7.0
 python-dotenv>=1.0.0,<2.0.0
 
 # Optional: For future Gradio support (commented until Windows fix)
-# gradio>=4.30.0,<5.0.0
+gradio>=4.30.0,<5.0.0
+Pillow>=9.5.0
 
 # Development & Testing (commented for production)
 # pytest>=7.0.0
