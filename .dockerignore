@@ -1,0 +1,53 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+.venv
+*.egg-info
+dist/
+build/
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Testing
+.pytest_cache
+.coverage
+htmlcov/
+
+# Documentation
+*.md
+docs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.log
+temp/
+tmp/
+*.pid
+
+# GitHub
+.github/
+.git/
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore

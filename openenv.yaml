@@ -1,0 +1,71 @@
+# OpenEnv Specification for MeshClean
+# Dynamic Data Pipeline Debugging Environment
+
+name: MeshClean
+version: 1.0.0
+description: >
+  A dynamic OpenEnv environment where AI agents debug data pipeline failures by exploring DAGs,
+  reasoning over propagated errors, and identifying root causes without prior knowledge.
+
+environment:
+  className: pipeline_debug_env.PipelineDebugEnv
+  module: pipeline_debug_env
+
+action_space:
+  type: Discrete
+  description: Four distinct action types for agent reasoning
+  actions:
+    - inspect_node: Inspect current node details and error logs
+    - move_to_parent: Navigate upstream to parent node
+    - check_schema: Examine node schema (column types and names)
+    - submit_root_cause: Submit final answer with predicted root cause node
+
+observation_space:
+  type: Dict
+  description: Observation returned to agent
+  components:
+    current_node: str                    # Currently viewed node
+    node_type: str                       # "data_source", "processor", "output"
+    error_log: str                       # Symptom errors visible at output
+    visited_nodes: list                  # Nodes explored so far
+    parents: list                        # Parent node IDs
+    children: list                       # Child node IDs
+    schema_info: dict                    # Column names and types
+    node_description: str                # Node details
+
+tasks:
+  task_1:
+    name: Easy - Simple Linear Pipeline
+    difficulty: easy
+    description: 2-node pipeline with dynamic error injection
+    max_steps: 20
+    
+  task_2:
+    name: Medium - Branching Pipeline with Merge
+    difficulty: medium
+    description: 6-node DAG with error propagation
+    max_steps: 30
+    
+  task_3:
+    name: Hard - Complex Multi-Path DAG
+    difficulty: hard
+    description: 7-node complex DAG with decoy error
+    max_steps: 40
+
+error_types:
+  - missing_column
+  - type_mismatch
+  - renamed_column
+  - schema_conflict
+  - data_loss
+
+reward_structure:
+  correct_prediction: 1.0
+  partial_correct_adjacent: 0.5
+  partial_correct_nearby: 0.25
+  new_node_inspection: 0.2
+  schema_check: 0.1
+  revisit_penalty: -0.05
+  invalid_action: -0.2
+
+entry_point: pipeline_debug_env:PipelineDebugEnv

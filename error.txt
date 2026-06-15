@@ -1,0 +1,3 @@
+C:\Users\madhu\OneDrive\Documents\MeshCleanDebuggerEnv\ui.py:201: UserWarning: The parameters have been moved from the Blocks constructor to the launch() method in Gradio 6.0: theme. Please pass these parameters to launch() instead.
+  with gr.Blocks(theme=gr.themes.Base(), title="MeshClean Debugger") as app:
+ERROR:    [Errno 10048] error while attempting to bind on address ('0.0.0.0', 7860): [winerror 10048] only one usage of each socket address (protocol/network address/port) is normally permitted
