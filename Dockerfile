@@ -39,7 +39,6 @@ COPY --chown=user:user pipeline_debug_env/ ./pipeline_debug_env/
 COPY --chown=user:user start_ui.py .
 COPY --chown=user:user ui.py .
 COPY --chown=user:user inference.py .
-COPY --chown=user:user README.md .
 
 USER user
 
