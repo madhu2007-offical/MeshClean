@@ -3,22 +3,21 @@
 # ============================================================================
 
 # Core Framework
-flask>=2.3.0,<3.0.0
+flask>=2.3.0
 flask-cors>=4.0.0
 
 # Data & ML
-pydantic>=2.0.0,<3.0.0
-numpy>=1.24.0,<2.0.0
-networkx>=3.0,<4.0.0
-matplotlib>=3.7.0,<4.0.0
+pydantic>=2.0.0
+numpy>=1.24.0
+networkx>=3.0
+matplotlib>=3.7.0
 
 # Configuration & Utilities
-PyYAML>=6.0,<7.0
-python-dotenv>=1.0.0,<2.0.0
+PyYAML>=6.0
+python-dotenv>=1.0.0
 
-# Optional: For future Gradio support (commented until Windows fix)
-gradio>=4.30.0,<5.0.0
-huggingface_hub<1.0.0
+# UI
+gradio>=5.0.0
 Pillow>=9.5.0
 
 # Development & Testing (commented for production)

@@ -19,11 +19,15 @@ def main():
     try:
         from ui import build_interface
         app = build_interface()
+        theme = getattr(app, "_custom_theme", None)
+        css = getattr(app, "_custom_css", None)
         app.launch(
             server_name="0.0.0.0",
             server_port=7860,
             show_error=True,
-            share=False
+            share=False,
+            theme=theme,
+            css=css
         )
     except KeyboardInterrupt:
         print("\n\nServer stopped.")

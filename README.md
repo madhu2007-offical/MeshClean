@@ -4,13 +4,14 @@ emoji: 🧹
 colorFrom: blue
 colorTo: purple
 sdk: docker
+app_port: 7860
 pinned: false
 ---
 
 # 🔍 MeshClean: A Dynamic Data Pipeline Debugging Environment
 
 
-[![Gradio App](https://img.shields.io/badge/%F0%9F%A4%97-Hugging%20Face%20Spaces-blue)](https://huggingface.co/spaces/Madhu007official/MeshClean-Debugger)
+[![Gradio App](https://img.shields.io/badge/%F0%9F%A4%97-Hugging%20Face%20Spaces-blue)](https://huggingface.co/spaces/Madhu007official/MeshClean-DebuggePipeline)
 [![Python Version](https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10%20%7C%203.11-green.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE)
 

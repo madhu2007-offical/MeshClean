@@ -33,42 +33,49 @@ TASK_MAP = {
 # ============================================================================
 
 def get_dag_positions(task):
-    """Compute symmetric layout coordinates for the 7-node pipeline DAG"""
-    pos = {}
-    # Find source node (no parents)
-    sources = [nid for nid, node in task.nodes.items() if not node.parents]
-    if not sources:
-        return pos
-    source = sources[0]
-    pos[source] = (0, 4)
+    """Compute symmetric, layered layout coordinates for any pipeline DAG"""
+    G = nx.DiGraph()
+    for nid, node in task.nodes.items():
+        G.add_node(nid)
+        for child in node.children:
+            G.add_edge(nid, child)
     
-    children = sorted(task.nodes[source].children)
-    if len(children) >= 2:
-        b1, b2 = children[0], children[1]
-        pos[b1] = (-1.5, 3)
-        pos[b2] = (1.5, 3)
+    # Calculate depth / layer for each node (distance from sources)
+    layers = {}
+    try:
+        top_order = list(nx.topological_sort(G))
+    except Exception:
+        top_order = list(G.nodes())
         
-        # Branch 1 child
-        b1_children = task.nodes[b1].children
-        if b1_children:
-            t1 = b1_children[0]
-            pos[t1] = (-1.5, 2)
+    for node in top_order:
+        preds = list(G.predecessors(node))
+        if not preds:
+            layers[node] = 0
+        else:
+            layers[node] = max(layers.get(p, 0) for p in preds) + 1
             
-        # Branch 2 child
-        b2_children = task.nodes[b2].children
-        if b2_children:
-            t2 = b2_children[0]
-            pos[t2] = (1.5, 2)
+    max_layer = max(layers.values()) if layers else 1
+    
+    # Group nodes by layer
+    by_layer = {}
+    for node, layer in layers.items():
+        by_layer.setdefault(layer, []).append(node)
         
-        # Merge point
-        if b1_children and task.nodes[t1].children:
-            merge = task.nodes[t1].children[0]
-            pos[merge] = (0, 1)
+    pos = {}
+    for layer, nodes_in_layer in by_layer.items():
+        y = float(max_layer - layer) * 1.5
+        n_nodes = len(nodes_in_layer)
+        for i, node in enumerate(sorted(nodes_in_layer)):
+            if n_nodes == 1:
+                x = 0.0
+            else:
+                x = (i - (n_nodes - 1) / 2.0) * 2.0
+            pos[node] = (x, y)
             
-            # Output node
-            if task.nodes[merge].children:
-                out = task.nodes[merge].children[0]
-                pos[out] = (0, 0)
+    for nid in task.nodes:
+        if nid not in pos:
+            pos[nid] = (0.0, 0.0)
+            
     return pos
 
 def draw_dag_image(task, current_node=None, visited_nodes=None, predicted_node=None, actual_root_cause=None, show_result=False):
@@ -86,7 +93,7 @@ def draw_dag_image(task, current_node=None, visited_nodes=None, predicted_node=N
             G.add_edge(nid, child)
             
     pos = get_dag_positions(task)
-    if not pos:
+    if not pos or any(node not in pos for node in G.nodes()):
         pos = nx.spring_layout(G)
     
     # Color mapping according to strict design rules:
@@ -173,6 +180,7 @@ def run_debug_generator(task_name):
     actual_cause = env.state.injected_error_node
     
     agent = DebugAgent(task_id)
+    agent.env = env
     strategy_plan = agent._plan_exploration(obs)
     
     logs = []
@@ -336,7 +344,9 @@ def build_interface():
     }
     """
     
-    with gr.Blocks(theme=gr.themes.Default(primary_hue="blue", neutral_hue="slate"), css=css_styles) as app:
+    with gr.Blocks(title="MeshClean Debugger") as app:
+        app._custom_theme = gr.themes.Default(primary_hue="blue", neutral_hue="slate")
+        app._custom_css = css_styles
         # Title
         gr.Markdown("# MeshClean Debugger")
         gr.Markdown("AI-driven pipeline debugging with visual reasoning.")
@@ -452,11 +462,15 @@ def launch():
         print("Press Ctrl+C to stop\n")
         
         app = build_interface()
+        theme = getattr(app, "_custom_theme", None)
+        css = getattr(app, "_custom_css", None)
         app.launch(
             server_name="0.0.0.0",
             server_port=7860,
             show_error=True,
-            share=False
+            share=False,
+            theme=theme,
+            css=css
         )
     except KeyboardInterrupt:
         print("\n\nServer stopped.")

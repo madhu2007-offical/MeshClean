@@ -137,8 +137,11 @@ class DebugAgent:
             if depth > 5:  # Limit depth
                 return
             
-            task = self.env.state.current_task
-            node = task.nodes.get(node_id)
+            task = self.env.state.current_task if (self.env and self.env.state) else None
+            if not task:
+                from pipeline_debug_env import get_task
+                task = get_task(self.task_id)
+            node = task.nodes.get(node_id) if task else None
             if not node:
                 return
             
@@ -156,7 +159,10 @@ class DebugAgent:
         Simple heuristic: identify root cause.
         Strategy: Likely to be a data_source or early processor with issues.
         """
-        task = self.env.state.current_task
+        task = self.env.state.current_task if (self.env and self.env.state) else None
+        if not task:
+            from pipeline_debug_env import get_task
+            task = get_task(self.task_id)
         
         # Look for data_source nodes (most likely root cause)
         for node_id, node in task.nodes.items():
@@ -164,7 +170,7 @@ class DebugAgent:
                 return node_id
         
         # Fallback: return first visited node
-        if self.env.state.visited_nodes:
+        if self.env and self.env.state and self.env.state.visited_nodes:
             return min(self.env.state.visited_nodes)
         
         return list(task.nodes.keys())[0]
