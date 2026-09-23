@@ -27,9 +27,7 @@ This environment presents a **structured API and UI** to let AI agents systemati
 *   **Dynamic Error Injection:** Simulates realistic failure modes, including schema conflicts, type mismatches, and renamed columns.
 *   **Structured Action Space:** Equip agents to perform operations like `inspect_node`, `check_schema`, `move_to_parent`, and `submit_root_cause`.
 *   **Guided Reward System:** Includes a dense reward signal to incentivize efficient exploration while penalizing redundant or invalid actions.
-*   **Dual Interfaces:**
-    *   **Gradio Web UI:** High-fidelity interface featuring interactive flowcharts and live debugging.
-    *   **Flask Web UI (Minimal):** Pure HTML/JS lightweight UI for maximum compatibility.
+*   **Interactive Web UI:** High-fidelity interface featuring interactive flowcharts and live debugging.
 
 ---
 
@@ -44,9 +42,8 @@ MeshClean-main/
 │   ├── tasks.py             # Predefined debugging scenarios
 │   └── grader.py            # Graph distance evaluation logic
 ├── inference.py             # Reference baseline heuristic agent
-├── ui.py                    # Gradio web interface
-├── ui_minimal.py            # Pure Flask web interface
-├── start_ui.py              # Launcher script for Flask UI
+├── ui.py                    # Web interface
+├── start_ui.py              # Launcher script
 ├── test_system.py           # Verification and validation suite
 ├── Dockerfile               # Deployment container build script
 └── requirements.txt         # Package dependencies
@@ -75,12 +72,6 @@ To start the default web interface:
 python start_ui.py
 ```
 Open your browser and navigate to **`http://localhost:7860`**.
-
-> [!NOTE]
-> If you prefer the Gradio-based layout, run:
-> ```bash
-> python ui.py
-> ```
 
 ---
 

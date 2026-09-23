@@ -38,7 +38,7 @@ jobs:
       run: |
         python -c "from pipeline_debug_env import PipelineDebugEnv; print('✓ Core OK')"
         python -c "from inference import DebugAgent; print('✓ Agent OK')"
-        python -c "from ui_minimal import app; print('✓ UI OK')"
+        python -c "from ui import build_interface; print('✓ UI OK')"
     
     - name: Test all tasks
       run: |
